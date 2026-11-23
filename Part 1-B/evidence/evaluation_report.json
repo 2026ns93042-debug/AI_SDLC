@@ -1,0 +1,247 @@
+{
+  "generated_at": "2026-11-23T10:45:55.426773+00:00",
+  "schema_score": 1.0,
+  "property_score": 1.0,
+  "semantic_score": 0.8889,
+  "aggregate_score": 0.963,
+  "threshold": 0.8,
+  "result": "PASS",
+  "case_count": 18,
+  "cases": [
+    {
+      "id": "bug-001",
+      "name": "division by zero literal",
+      "findings": [
+        {
+          "category": "Bug",
+          "severity": "High",
+          "line": 2,
+          "finding": "Division by zero is possible",
+          "suggestion": "Validate that the denominator is non-zero before division"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "bug-002",
+      "name": "named denominator",
+      "findings": [
+        {
+          "category": "Bug",
+          "severity": "High",
+          "line": 2,
+          "finding": "Division uses a potentially zero denominator",
+          "suggestion": "Check the denominator value before performing division"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "bug-003",
+      "name": "none dereference",
+      "findings": [
+        {
+          "category": "Bug",
+          "severity": "High",
+          "line": 3,
+          "finding": "Potential null value dereference",
+          "suggestion": "Check for None before accessing attributes or calling methods"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "security-001",
+      "name": "dynamic eval",
+      "findings": [
+        {
+          "category": "Security",
+          "severity": "High",
+          "line": 2,
+          "finding": "Use of eval or exec can execute arbitrary code",
+          "suggestion": "Use explicit parsing or a safe allowlisted implementation"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "security-002",
+      "name": "shell subprocess",
+      "findings": [
+        {
+          "category": "Security",
+          "severity": "High",
+          "line": 2,
+          "finding": "Subprocess shell execution may enable command injection",
+          "suggestion": "Avoid shell=True and pass an argument list with strict validation"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "security-003",
+      "name": "sql string interpolation",
+      "findings": [
+        {
+          "category": "Security",
+          "severity": "High",
+          "line": 2,
+          "finding": "SQL query construction may allow SQL injection",
+          "suggestion": "Use a parameterized query and pass values separately"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "security-004",
+      "name": "hardcoded password",
+      "findings": [],
+      "category_matched": false
+    },
+    {
+      "id": "security-005",
+      "name": "unsafe pickle",
+      "findings": [
+        {
+          "category": "Security",
+          "severity": "High",
+          "line": 2,
+          "finding": "Deserializing untrusted data can execute attacker-controlled code",
+          "suggestion": "Use a safe format or validate and deserialize only trusted input"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "security-006",
+      "name": "weak md5",
+      "findings": [
+        {
+          "category": "Security",
+          "severity": "Medium",
+          "line": 2,
+          "finding": "Weak cryptographic hash algorithm may be unsuitable for security",
+          "suggestion": "Use SHA-256 or a stronger approved hash for security-sensitive operations"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "performance-001",
+      "name": "list append in loop",
+      "findings": [
+        {
+          "category": "Performance",
+          "severity": "Low",
+          "line": 4,
+          "finding": "Repeated collection updates may be costly in a tight loop",
+          "suggestion": "Preallocate or batch collection work where it preserves behavior"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "performance-002",
+      "name": "string concatenation in loop",
+      "findings": [
+        {
+          "category": "Performance",
+          "severity": "Medium",
+          "line": 4,
+          "finding": "Repeated string concatenation can create avoidable allocations",
+          "suggestion": "Collect strings in a list and join them once"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "performance-003",
+      "name": "length recomputed in loop",
+      "findings": [],
+      "category_matched": false
+    },
+    {
+      "id": "style-001",
+      "name": "explicit true comparison",
+      "findings": [
+        {
+          "category": "Style",
+          "severity": "Low",
+          "line": 2,
+          "finding": "Boolean comparison is unnecessarily explicit",
+          "suggestion": "Use the boolean value directly or use its negation"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "style-002",
+      "name": "explicit false comparison",
+      "findings": [
+        {
+          "category": "Style",
+          "severity": "Low",
+          "line": 2,
+          "finding": "Boolean comparison is unnecessarily explicit",
+          "suggestion": "Use the boolean value directly or use its negation"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "maintainability-001",
+      "name": "broad exception",
+      "findings": [
+        {
+          "category": "Maintainability",
+          "severity": "Medium",
+          "line": 4,
+          "finding": "Broad exception handling hides failures and reduces diagnosability",
+          "suggestion": "Catch specific exception types and handle or re-raise them appropriately"
+        },
+        {
+          "category": "Maintainability",
+          "severity": "Medium",
+          "line": 5,
+          "finding": "Empty exception or control block is likely incomplete",
+          "suggestion": "Add explicit error handling or an explanatory comment"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "maintainability-002",
+      "name": "empty pass block",
+      "findings": [
+        {
+          "category": "Maintainability",
+          "severity": "Medium",
+          "line": 2,
+          "finding": "Empty exception or control block is likely incomplete",
+          "suggestion": "Add explicit error handling or an explanatory comment"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "maintainability-003",
+      "name": "too many parameters",
+      "findings": [
+        {
+          "category": "Maintainability",
+          "severity": "Medium",
+          "line": 1,
+          "finding": "Function has too many parameters",
+          "suggestion": "Group related parameters in an object or reduce the public interface"
+        }
+      ],
+      "category_matched": true
+    },
+    {
+      "id": "edge-001",
+      "name": "clean source",
+      "findings": [],
+      "category_matched": false
+    }
+  ]
+}

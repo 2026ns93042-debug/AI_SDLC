@@ -1,0 +1,110 @@
+[
+  {
+    "id": "bug-001",
+    "name": "division by zero literal",
+    "source": "def divide(a):\n    return a / 0\n",
+    "expected": {"category": "Bug", "severity": "High", "line": 2, "finding_contains": ["division", "zero"], "suggestion_contains": ["denominator", "validate"]}
+  },
+  {
+    "id": "bug-002",
+    "name": "named denominator",
+    "source": "def divide(a, denominator):\n    return a / denominator\n",
+    "expected": {"category": "Bug", "severity": "High", "line": 2, "finding_contains": ["denominator"], "suggestion_contains": ["denominator"]}
+  },
+  {
+    "id": "bug-003",
+    "name": "none dereference",
+    "source": "def process(value):\n    value = None\n    return value.name\n",
+    "expected": {"category": "Bug", "severity": "High", "line": 3, "finding_contains": ["null", "none"], "suggestion_contains": ["none"]}
+  },
+  {
+    "id": "security-001",
+    "name": "dynamic eval",
+    "source": "def run(command):\n    return eval(command)\n",
+    "expected": {"category": "Security", "severity": "High", "line": 2, "finding_contains": ["eval", "code"], "suggestion_contains": ["safe", "allow"]}
+  },
+  {
+    "id": "security-002",
+    "name": "shell subprocess",
+    "source": "import subprocess\nsubprocess.run(command, shell=True)\n",
+    "expected": {"category": "Security", "severity": "High", "line": 2, "finding_contains": ["shell", "injection"], "suggestion_contains": ["shell=false", "argument"]}
+  },
+  {
+    "id": "security-003",
+    "name": "sql string interpolation",
+    "source": "def find_user(cursor, name):\n    cursor.execute(f\"SELECT * FROM users WHERE name = '{name}'\")\n",
+    "expected": {"category": "Security", "severity": "High", "line": 2, "finding_contains": ["sql", "injection"], "suggestion_contains": ["parameterized"]}
+  },
+  {
+    "id": "security-004",
+    "name": "hardcoded password",
+    "source": "DATABASE_PASSWORD = \"admin123\"\n",
+    "expected": {"category": "Security", "severity": "High", "line": 1, "finding_contains": ["credential", "source"], "suggestion_contains": ["environment", "secret"]}
+  },
+  {
+    "id": "security-005",
+    "name": "unsafe pickle",
+    "source": "import pickle\ndata = pickle.loads(untrusted_bytes)\n",
+    "expected": {"category": "Security", "severity": "High", "line": 2, "finding_contains": ["deserial", "code"], "suggestion_contains": ["trusted", "safe"]}
+  },
+  {
+    "id": "security-006",
+    "name": "weak md5",
+    "source": "import hashlib\ndigest = hashlib.md5(data).hexdigest()\n",
+    "expected": {"category": "Security", "severity": "Medium", "line": 2, "finding_contains": ["weak", "hash"], "suggestion_contains": ["sha-256", "approved"]}
+  },
+  {
+    "id": "performance-001",
+    "name": "list append in loop",
+    "source": "def collect(items):\n    result = []\n    for item in items:\n        result.append(item)\n    return result\n",
+    "expected": {"category": "Performance", "severity": "Low", "line": 4, "finding_contains": ["collection", "loop"], "suggestion_contains": ["preallocate", "batch"]}
+  },
+  {
+    "id": "performance-002",
+    "name": "string concatenation in loop",
+    "source": "def join(parts):\n    text = \"\"\n    for part in parts:\n        text += part\n    return text\n",
+    "expected": {"category": "Performance", "severity": "Medium", "line": 4, "finding_contains": ["string", "allocation"], "suggestion_contains": ["join", "list"]}
+  },
+  {
+    "id": "performance-003",
+    "name": "length recomputed in loop",
+    "source": "items = [1, 2, 3]\nwhile i < len(items):\n    i += 1\n",
+    "expected": {"category": "Performance", "severity": "Low", "line": 2, "finding_contains": ["length", "loop"], "suggestion_contains": ["cache", "outside"]}
+  },
+  {
+    "id": "style-001",
+    "name": "explicit true comparison",
+    "source": "def enabled(flag):\n    return flag == True\n",
+    "expected": {"category": "Style", "severity": "Low", "line": 2, "finding_contains": ["boolean", "explicit"], "suggestion_contains": ["boolean", "direct"]}
+  },
+  {
+    "id": "style-002",
+    "name": "explicit false comparison",
+    "source": "def disabled(flag):\n    return flag != False\n",
+    "expected": {"category": "Style", "severity": "Low", "line": 2, "finding_contains": ["boolean", "explicit"], "suggestion_contains": ["boolean", "negation"]}
+  },
+  {
+    "id": "maintainability-001",
+    "name": "broad exception",
+    "source": "def load():\n    try:\n        return read()\n    except Exception:\n        pass\n",
+    "expected": {"category": "Maintainability", "severity": "Medium", "line": 4, "finding_contains": ["broad", "exception"], "suggestion_contains": ["specific", "exception"]}
+  },
+  {
+    "id": "maintainability-002",
+    "name": "empty pass block",
+    "source": "if ready:\n    pass\n",
+    "expected": {"category": "Maintainability", "severity": "Medium", "line": 2, "finding_contains": ["empty", "block"], "suggestion_contains": ["handling", "comment"]}
+  },
+  {
+    "id": "maintainability-003",
+    "name": "too many parameters",
+    "source": "def configure(a, b, c, d, e, f):\n    return a + b + c + d + e + f\n",
+    "expected": {"category": "Maintainability", "severity": "Medium", "line": 1, "finding_contains": ["too many", "parameters"], "suggestion_contains": ["group", "reduce"]}
+  },
+  {
+    "id": "edge-001",
+    "name": "clean source",
+    "source": "def add(a, b):\n    return a + b\n",
+    "expected": {"no_findings": true}
+  }
+]
